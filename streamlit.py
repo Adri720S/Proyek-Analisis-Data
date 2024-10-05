@@ -35,7 +35,7 @@ plt.title('Top 10 Cities with Most Customers')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-# st.pyplot(figure)  # Uncomment this if using Streamlit
+st.pyplot(figure)  # Uncomment this if using Streamlit
 
 # Prepare product weight data
 data = {
@@ -57,4 +57,4 @@ plt.title('Average Product Weight per Category')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-# st.pyplot(figure)  # Uncomment this if using Streamlit
+st.pyplot(figure)  # Uncomment this if using Streamlit
