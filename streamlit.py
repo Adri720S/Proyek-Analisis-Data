@@ -27,14 +27,14 @@ df = pd.DataFrame(data)
 top_cities = df.sort_values('count', ascending=False).head(10)
 
 # Membuat bar chart
-plt.figure(figsize=(10, 6))
-plt.bar(top_cities['customer_city'], top_cities['count'], color='brown')
-plt.xlabel('City')
-plt.ylabel('Number of Customers')
-plt.title('Top 10 Cities with Most Customers')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+fig, ax=plt.subplots(figsize=(16, 8))
+sns.barplot(top_cities['customer_city'], top_cities['count'], color='brown')
+ax.xlabel('City')
+ax.ylabel('Number of Customers')
+ax.title('Top 10 Cities with Most Customers')
+ax.xticks(rotation=45)
+ax.tight_layout()
+ax.show()
 st.pyplot(figure)
 
 data = {
