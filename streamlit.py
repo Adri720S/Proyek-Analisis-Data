@@ -19,23 +19,23 @@ product_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Anal
 product_categories_name_translation_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/product_category_name_translation.csv")
 
 # Prepare customer city data
-data = {'customer_city': ['sao paulo', 'rio de janeiro', 'belo horizonte', 'brasilia', 'curitiba', 'bequimao', 'andarai'],
-        'count': [15540, 6882, 2773, 2131, 1521, 1, 1]}
+data = {
+    'customer_city': ['sao paulo', 'rio de janeiro', 'belo horizonte', 'brasilia', 'curitiba', 'bequimao', 'andarai'],
+    'count': [15540, 6882, 2773, 2131, 1521, 1, 1]
+}
 df = pd.DataFrame(data)
 
 # Display only top cities
 top_cities = df.sort_values('count', ascending=False).head(10)
 
-# Create bar chart using Seaborn
-plt.figure(figsize=(16, 8))
-sns.barplot(x='customer_city', y='count', data=top_cities, color='brown')
-plt.xlabel('City')
-plt.ylabel('Number of Customers')
-plt.title('Top 10 Cities with Most Customers')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
-st.pyplot(figure)  # Uncomment this if using Streamlit
+# Create bar chart using Seaborn for top cities with ax
+fig, ax = plt.subplots(figsize=(16, 8))
+sns.barplot(x='customer_city', y='count', data=top_cities, color='brown', ax=ax)
+ax.set_xlabel('City')
+ax.set_ylabel('Number of Customers')
+ax.set_title('Top 10 Cities with Most Customers')
+ax.tick_params(axis='x', rotation=45)
+st.pyplot(fig)  # Pass the figure to Streamlit
 
 # Prepare product weight data
 data = {
@@ -48,13 +48,11 @@ df = pd.DataFrame(data)
 # Calculate average weight per category
 mean_weight_per_category = df.groupby('product_category_name_english')['product_weight_g'].mean().reset_index()
 
-# Create bar chart using Seaborn
-plt.figure(figsize=(10, 6))
-sns.barplot(x='product_category_name_english', y='product_weight_g', data=mean_weight_per_category, color='purple')
-plt.xlabel('Product Category')
-plt.ylabel('Average Product Weight (g)')
-plt.title('Average Product Weight per Category')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
-st.pyplot(figure)  # Uncomment this if using Streamlit
+# Create bar chart using Seaborn for average product weight with ax
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.barplot(x='product_category_name_english', y='product_weight_g', data=mean_weight_per_category, color='purple', ax=ax)
+ax.set_xlabel('Product Category')
+ax.set_ylabel('Average Product Weight (g)')
+ax.set_title('Average Product Weight per Category')
+ax.tick_params(axis='x', rotation=45)
+st.pyplot(fig)  # Pass the figure to Streamlit
