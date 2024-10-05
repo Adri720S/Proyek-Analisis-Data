@@ -18,43 +18,43 @@ orders_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Anali
 product_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/products_dataset.csv")
 product_categories_name_translation_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/product_category_name_translation.csv")
 
+# Prepare customer city data
 data = {'customer_city': ['sao paulo', 'rio de janeiro', 'belo horizonte', 'brasilia', 'curitiba', 'bequimao', 'andarai'],
         'count': [15540, 6882, 2773, 2131, 1521, 1, 1]}
-
 df = pd.DataFrame(data)
 
-# Menampilkan hanya kota dengan jumlah tertinggi
+# Display only top cities
 top_cities = df.sort_values('count', ascending=False).head(10)
 
-# Membuat bar chart
-fig, ax=plt.subplots(figsize=(16, 8))
-sns.barplot(top_cities['customer_city'], top_cities['count'], color='brown')
-ax.xlabel('City')
-ax.ylabel('Number of Customers')
-ax.title('Top 10 Cities with Most Customers')
-ax.xticks(rotation=45)
-ax.tight_layout()
-ax.show()
-st.pyplot(figure)
+# Create bar chart using Seaborn
+plt.figure(figsize=(16, 8))
+sns.barplot(x='customer_city', y='count', data=top_cities, color='brown')
+plt.xlabel('City')
+plt.ylabel('Number of Customers')
+plt.title('Top 10 Cities with Most Customers')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+# st.pyplot(figure)  # Uncomment this if using Streamlit
 
+# Prepare product weight data
 data = {
     'product_category_name_english': ['perfumery', 'art', 'sports_leisure', 'baby', 'housewares',
                                       'perfumery', 'art', 'sports_leisure', 'baby', 'housewares'],
     'product_weight_g': [225.0, 1000.0, 154.0, 371.0, 625.0, 200.0, 900.0, 150.0, 400.0, 650.0]
 }
-
 df = pd.DataFrame(data)
 
-# Menghitung rata-rata berat per kategori
-mean_weight_per_category = df.groupby('product_category_name_english')['product_weight_g'].mean()
+# Calculate average weight per category
+mean_weight_per_category = df.groupby('product_category_name_english')['product_weight_g'].mean().reset_index()
 
-# Membuat bar chart
+# Create bar chart using Seaborn
 plt.figure(figsize=(10, 6))
-mean_weight_per_category.plot(kind='bar', color='purple')
+sns.barplot(x='product_category_name_english', y='product_weight_g', data=mean_weight_per_category, color='purple')
 plt.xlabel('Product Category')
 plt.ylabel('Average Product Weight (g)')
 plt.title('Average Product Weight per Category')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-st.pyplot(figure)
+# st.pyplot(figure)  # Uncomment this if using Streamlit
