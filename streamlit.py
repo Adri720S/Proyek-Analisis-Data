@@ -19,6 +19,7 @@ product_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Anal
 product_categories_name_translation_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/product_category_name_translation.csv")
 
 # Prepare customer city data
+st.subheader("Customer City Data")
 data = {
     'customer_city': ['sao paulo', 'rio de janeiro', 'belo horizonte', 'brasilia', 'curitiba', 'bequimao', 'andarai'],
     'count': [15540, 6882, 2773, 2131, 1521, 1, 1]
@@ -38,6 +39,7 @@ ax.tick_params(axis='x', rotation=45)
 st.pyplot(fig)  # Pass the figure to Streamlit
 
 # Prepare product weight data
+st.subheader("Product Weight Data")
 data = {
     'product_category_name_english': ['perfumery', 'art', 'sports_leisure', 'baby', 'housewares',
                                       'perfumery', 'art', 'sports_leisure', 'baby', 'housewares'],
