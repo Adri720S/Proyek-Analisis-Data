@@ -35,6 +35,7 @@ plt.title('Top 10 Cities with Most Customers')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
+st.pyplot(figure)
 
 data = {
     'product_category_name_english': ['perfumery', 'art', 'sports_leisure', 'baby', 'housewares',
@@ -56,3 +57,4 @@ plt.title('Average Product Weight per Category')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
+st.pyplot(figure)
