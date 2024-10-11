@@ -103,6 +103,8 @@ with tab2:
 # Visualisasi untuk tab Tahun 2018
 with tab3:
     visualisasi_tahun(2018)
+print()
+
 
 # Visualisasi data kedua
 # Membaca dataset
@@ -125,7 +127,6 @@ df_dipilih = new_product_df[['product_category_name_english', 'product_weight_g'
 df_dipilih_unique = df_dipilih.drop_duplicates(subset='product_category_name_english', keep='first')
 
 # Membuat opsi filter interaktif dengan selectbox pada Streamlit
-st.markdown("<h3 style='font-size:24px;'>Choose product visualization:</h3>", unsafe_allow_html=True)
 option = st.selectbox(
     'Choose product visualization:',
     ('Heaviest Products', 'Lightest Products')
