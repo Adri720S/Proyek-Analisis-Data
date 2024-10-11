@@ -75,8 +75,8 @@ def visualisasi_tahun(tahun):
     # Membuat visualisasi dengan Seaborn
     fig, ax = plt.subplots(figsize=(10, 5))
     sns.lineplot(
-        x=monthly_df["Order Approved at"],
-        y=monthly_df["Order Count"],
+        x=monthly_df["order_approved_at"],
+        y=monthly_df["order_count"],
         marker='o',
         linewidth=2,
         color="#068DA9",
@@ -84,7 +84,9 @@ def visualisasi_tahun(tahun):
     )
 
     ax.set_title(f"Number of Orders per Month in {tahun}", loc="center", fontsize=20)
-    ax.set_xticklabels(monthly_df["Order Approved at"], fontsize=10, rotation=25)
+    ax.set_xlabel("Month")  # Mengatur label sumbu x
+    ax.set_ylabel("Order Quantity")  # Mengatur label sumbu y
+    ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=25)
     ax.set_yticklabels(ax.get_yticks(), fontsize=10)
 
     # Menampilkan grafik dengan Streamlit
