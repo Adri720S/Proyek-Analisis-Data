@@ -13,72 +13,94 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
+# Membaca data set
 orders_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/orders_dataset.csv")
 product_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/products_dataset.csv")
 product_categories_name_translation_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/product_category_name_translation.csv")
 
 # Prepare data pertama
-st.subheader("Number of Orders per Month in 2017")
+# Mengubah kolom tanggal menjadi tipe datetime
 orders_df['order_approved_at'] = pd.to_datetime(orders_df['order_approved_at'], errors='coerce')
-# Filter hanya data di tahun 2017
-orders_df = orders_df[orders_df['order_approved_at'].dt.year == 2017]
-# Set kolom 'order_approved_at' sebagai index
-orders_df = orders_df.set_index('order_approved_at')
 
-# Resample per bulan dan hitung jumlah order_id unik
-monthly_df = orders_df.resample(rule='ME').agg({
-    "order_id": "nunique"
-})
+# Membuat tab untuk tahun 2016, 2017, dan 2018
+tab1, tab2, tab3 = st.tabs(["Tahun 2016", "Tahun 2017", "Tahun 2018"])
 
-# Mengubah index menjadi format Tahun-Bulan
-monthly_df.index = monthly_df.index.strftime('%B')
+# Fungsi untuk memproses dan menampilkan grafik per tahun
+def visualisasi_tahun(tahun):
+    st.subheader(f"Number of Orders per Month in {tahun}")
+    
+    # Filter data sesuai tahun yang dipilih
+    orders_tahun = orders_df[orders_df['order_approved_at'].dt.year == tahun]
+    
+    # Set kolom 'order_approved_at' sebagai index
+    orders_tahun = orders_tahun.set_index('order_approved_at')
+    
+    # Resample per bulan dan hitung jumlah order_id unik
+    monthly_df = orders_tahun.resample(rule='ME').agg({
+        "order_id": "nunique"
+    })
 
-# Reset index agar kembali menjadi DataFrame
-monthly_df = monthly_df.reset_index()
+    # Mengubah index menjadi format Tahun-Bulan
+    monthly_df.index = monthly_df.index.strftime('%B')
 
-# Mengganti kolom order_id menjadi order_count
-monthly_df.rename(columns={
-    "order_id": "order_count",
-}, inplace=True)
+    # Reset index agar kembali menjadi DataFrame
+    monthly_df = monthly_df.reset_index()
 
-# Membuat mapping untuk urutan bulan
-month_mapping = {
-    "January": 1,
-    "February": 2,
-    "March": 3,
-    "April": 4,
-    "May": 5,
-    "June": 6,
-    "July": 7,
-    "August": 8,
-    "September": 9,
-    "October": 10,
-    "November": 11,
-    "December": 12
-}
+    # Mengganti kolom order_id menjadi order_count
+    monthly_df.rename(columns={
+        "order_id": "order_count",
+    }, inplace=True)
 
-# Tambahkan kolom angka bulan untuk sorting
-monthly_df["month_numeric"] = monthly_df["order_approved_at"].map(month_mapping)
-monthly_df = monthly_df.sort_values("month_numeric")
-monthly_df = monthly_df.drop("month_numeric", axis=1)
+    # Membuat mapping untuk urutan bulan
+    month_mapping = {
+        "January": 1,
+        "February": 2,
+        "March": 3,
+        "April": 4,
+        "May": 5,
+        "June": 6,
+        "July": 7,
+        "August": 8,
+        "September": 9,
+        "October": 10,
+        "November": 11,
+        "December": 12
+    }
 
-# Membuat visualisasi dengan Seaborn
-fig, ax = plt.subplots(figsize=(10, 5))
-sns.lineplot(
-    x=monthly_df["order_approved_at"],
-    y=monthly_df["order_count"],
-    marker='o',
-    linewidth=2,
-    color="#068DA9",
-    ax=ax
-)
+    # Tambahkan kolom angka bulan untuk sorting
+    monthly_df["month_numeric"] = monthly_df["order_approved_at"].map(month_mapping)
+    monthly_df = monthly_df.sort_values("month_numeric")
+    monthly_df = monthly_df.drop("month_numeric", axis=1)
 
-ax.set_title("Number of Orders per Month (2017)", loc="center", fontsize=20)
-ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=25)
-ax.set_yticklabels(ax.get_yticks(), fontsize=10)
+    # Membuat visualisasi dengan Seaborn
+    fig, ax = plt.subplots(figsize=(10, 5))
+    sns.lineplot(
+        x=monthly_df["order_approved_at"],
+        y=monthly_df["order_count"],
+        marker='o',
+        linewidth=2,
+        color="#068DA9",
+        ax=ax
+    )
 
-# Menampilkan grafik dengan Streamlit
-st.pyplot(fig)
+    ax.set_title(f"Number of Orders per Month in {tahun}", loc="center", fontsize=20)
+    ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=25)
+    ax.set_yticklabels(ax.get_yticks(), fontsize=10)
+
+    # Menampilkan grafik dengan Streamlit
+    st.pyplot(fig)
+
+# Visualisasi untuk tab Tahun 2016
+with tab1:
+    visualisasi_tahun(2016)
+
+# Visualisasi untuk tab Tahun 2017
+with tab2:
+    visualisasi_tahun(2017)
+
+# Visualisasi untuk tab Tahun 2018
+with tab3:
+    visualisasi_tahun(2018)
 
 # Visualisasi data kedua
 # Membaca dataset
