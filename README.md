@@ -1,12 +1,3 @@
-# Proyek-Analisis-Data
-Langkah-langkah:
-1. Masukkan data, buut codingan
-2. buat codingan streamlit python di notebook
-3. buat requirement yang berisi library
-4. buat streamlit terusan dari github
-5. perbaiki github jika masih error (termasuk upload data yang dipakai)
-6. buka streamlit
-
 # Tugas analisis data Dicoding "Belajar Data Analytics dengan Python"
 ## Project Data Analytics
 Repository ini berisi proyek data analytics yang saya kerjakan. Deployment in Streamlit.
@@ -19,6 +10,11 @@ Proyek ini bertujuan untuk menganalisis data pada E-Commerce Public Dataset dan 
 - !pip install pipreqs
 - !pip install streamlit
   di google colab yang saya hubungkan ke google drive lalu hubungkan ke github
-## Penggunaan
-dari github saya hubungkan ke streamlit. Dapat dilihat hasilnya pada link berikut:
+## Cara Penggunaan dan Langkah-langkahnya:
+1. Masukkan data, buut codingan
+2. buat codingan streamlit python di notebook
+3. buat requirement yang berisi library
+4. buat streamlit terusan dari github
+5. perbaiki github jika masih error (termasuk upload data yang dipakai)
+6. buka streamlit
 
