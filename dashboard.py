@@ -23,7 +23,7 @@ product_categories_name_translation_df = pd.read_csv("https://raw.githubusercont
 orders_df['order_approved_at'] = pd.to_datetime(orders_df['order_approved_at'], errors='coerce')
 
 # Membuat tab untuk tahun 2016, 2017, dan 2018
-tab1, tab2, tab3 = st.tabs(["Tahun 2016", "Tahun 2017", "Tahun 2018"])
+tab1, tab2, tab3 = st.tabs(["Year 2016", "Year 2017", "Year 2018"])
 
 # Fungsi untuk memproses dan menampilkan grafik per tahun
 def visualisasi_tahun(tahun):
@@ -75,8 +75,8 @@ def visualisasi_tahun(tahun):
     # Membuat visualisasi dengan Seaborn
     fig, ax = plt.subplots(figsize=(10, 5))
     sns.lineplot(
-        x=monthly_df["order_approved_at"],
-        y=monthly_df["order_count"],
+        x=monthly_df["Order Approved at"],
+        y=monthly_df["Order Count"],
         marker='o',
         linewidth=2,
         color="#068DA9",
@@ -84,7 +84,7 @@ def visualisasi_tahun(tahun):
     )
 
     ax.set_title(f"Number of Orders per Month in {tahun}", loc="center", fontsize=20)
-    ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=25)
+    ax.set_xticklabels(monthly_df["Order Approved at"], fontsize=10, rotation=25)
     ax.set_yticklabels(ax.get_yticks(), fontsize=10)
 
     # Menampilkan grafik dengan Streamlit
@@ -124,16 +124,16 @@ df_dipilih_unique = df_dipilih.drop_duplicates(subset='product_category_name_eng
 
 # Membuat opsi filter interaktif dengan selectbox pada Streamlit
 option = st.selectbox(
-    'Pilih visualisasi produk:',
-    ('Paling berat', 'Paling ringan')
+    'Choose product visualization:',
+    ('Heaviest Products', 'Lightest Products')
 )
 
 # Menentukan palet warna untuk barplot
 colors = sns.color_palette(["#068DA9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"])
 
 # Visualisasi sesuai dengan pilihan yang dipilih pengguna
-if option == 'Paling berat':
-    st.write("### Produk dengan massa paling berat")
+if option == 'Heaviest Products':
+    st.write("### Products with the heaviest weight")
     
     # Plot produk dengan berat terbesar
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -144,15 +144,15 @@ if option == 'Paling berat':
         palette=colors, ax=ax
     )
     
-    ax.set_ylabel(None)
-    ax.set_xlabel("Berat (g)")
-    ax.set_title("5 Produk dengan Massa Terberat", loc="center", fontsize=18)
+    ax.set_ylabel("Product Categories")
+    ax.set_xlabel("Mass (g)")
+    ax.set_title("5 Heaviest Products", loc="center", fontsize=18)
     ax.tick_params(axis='y', labelsize=12)
     
     st.pyplot(fig)
 
-elif option == 'Paling ringan':
-    st.write("### Produk dengan massa paling ringan")
+elif option == 'Lightest Products':
+    st.write("### Products with the lightest weight")
     
     # Plot produk dengan berat terkecil
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -163,10 +163,10 @@ elif option == 'Paling ringan':
         palette=colors, ax=ax
     )
     
-    ax.set_ylabel(None)
-    ax.set_xlabel("Berat (g)")
+    ax.set_ylabel("Product Categories")
+    ax.set_xlabel("Mass (g)")
     ax.invert_xaxis()  # Membalik sumbu X
-    ax.set_title("5 Produk dengan Massa Terringan", loc="center", fontsize=18)
+    ax.set_title("5 Lightest Products", loc="center", fontsize=18)
     ax.yaxis.set_label_position("right")
     ax.yaxis.tick_right()
     ax.tick_params(axis='y', labelsize=12)
