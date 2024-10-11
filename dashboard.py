@@ -17,8 +17,8 @@ orders_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Anali
 product_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/products_dataset.csv")
 product_categories_name_translation_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/product_category_name_translation.csv")
 
-# Prepare orders data
-st.subheader("Number of orders per Month (2017)")
+# Prepare data pertama
+st.subheader("Number of orders per month in 2017")
 orders_df['order_approved_at'] = pd.to_datetime(orders_df['order_approved_at'], errors='coerce')
 # Filter hanya data di tahun 2017
 orders_df = orders_df[orders_df['order_approved_at'].dt.year == 2017]
