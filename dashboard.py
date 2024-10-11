@@ -86,7 +86,7 @@ def visualisasi_tahun(tahun):
     ax.set_title(f"Number of Orders per Month in {tahun}", loc="center", fontsize=20)
     ax.set_xlabel("Month", fontsize=15)  # Mengatur label sumbu x
     ax.set_ylabel("Order Quantity", fontsize=15)  # Mengatur label sumbu y
-    ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=0)
+    ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=15)
     ax.set_yticklabels(ax.get_yticks(), fontsize=10)
 
     # Menampilkan grafik dengan Streamlit
