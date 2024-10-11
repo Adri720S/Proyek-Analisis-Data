@@ -103,7 +103,7 @@ df_dipilih_unique = df_dipilih.drop_duplicates(subset='product_category_name_eng
 # Membuat opsi filter interaktif dengan selectbox pada Streamlit
 option = st.selectbox(
     'Pilih visualisasi produk:',
-    ('Produk dengan massa paling berat', 'Produk dengan massa paling ringan')
+    ('Paling berat', 'Paling ringan')
 )
 
 # Menentukan palet warna untuk barplot
@@ -144,7 +144,7 @@ elif option == 'Produk dengan massa paling ringan':
     ax.set_ylabel(None)
     ax.set_xlabel("Berat (g)")
     ax.invert_xaxis()  # Membalik sumbu X
-    ax.set_title("5 Produk dengan Massa Tereringan", loc="center", fontsize=18)
+    ax.set_title("5 Produk dengan Massa Terringan", loc="center", fontsize=18)
     ax.yaxis.set_label_position("right")
     ax.yaxis.tick_right()
     ax.tick_params(axis='y', labelsize=12)
