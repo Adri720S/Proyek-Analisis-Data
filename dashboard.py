@@ -63,21 +63,24 @@ monthly_df = monthly_df.sort_values("month_numeric")
 monthly_df = monthly_df.drop("month_numeric", axis=1)
 
 # Membuat visualisasi dengan Seaborn
-plt.figure(figsize=(10, 5))
+fig, ax = plt.subplots(figsize=(10, 5))
 sns.lineplot(
     x=monthly_df["order_approved_at"],
     y=monthly_df["order_count"],
     marker='o',
     linewidth=2,
-    color="#068DA9"
+    color="#068DA9",
+    ax=ax
 )
 
-plt.title("Number of Orders per Month (2017)", loc="center", fontsize=20)
-plt.xticks(fontsize=10, rotation=25)
-plt.yticks(fontsize=10)
+ax.set_title("Number of Orders per Month (2017)", loc="center", fontsize=20)
+ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=25)
+ax.set_yticklabels(ax.get_yticks(), fontsize=10)
 
-plt.show()
+# Menampilkan grafik dengan Streamlit
+st.pyplot(fig)
 
+# Visualisasi data kedua
 # Membaca dataset
 product_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/products_dataset.csv")
 product_categories_name_translation_df = pd.read_csv("https://raw.githubusercontent.com/Adri720S/Proyek-Analisis-Data/refs/heads/main/product_category_name_translation.csv")
