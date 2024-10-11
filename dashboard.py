@@ -110,7 +110,7 @@ option = st.selectbox(
 colors = sns.color_palette(["#068DA9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"])
 
 # Visualisasi sesuai dengan pilihan yang dipilih pengguna
-if option == 'Produk dengan massa paling berat':
+if option == 'Paling berat':
     st.write("### Produk dengan massa paling berat")
     
     # Plot produk dengan berat terbesar
@@ -129,7 +129,7 @@ if option == 'Produk dengan massa paling berat':
     
     st.pyplot(fig)
 
-elif option == 'Produk dengan massa paling ringan':
+elif option == 'Paling ringan':
     st.write("### Produk dengan massa paling ringan")
     
     # Plot produk dengan berat terkecil
