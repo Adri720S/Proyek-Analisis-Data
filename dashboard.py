@@ -84,9 +84,9 @@ def visualisasi_tahun(tahun):
     )
 
     ax.set_title(f"Number of Orders per Month in {tahun}", loc="center", fontsize=20)
-    ax.set_xlabel("Month")  # Mengatur label sumbu x
-    ax.set_ylabel("Order Quantity")  # Mengatur label sumbu y
-    ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=25)
+    ax.set_xlabel("Month", fontsize=15)  # Mengatur label sumbu x
+    ax.set_ylabel("Order Quantity", fontsize=15)  # Mengatur label sumbu y
+    ax.set_xticklabels(monthly_df["order_approved_at"], fontsize=10, rotation=0)
     ax.set_yticklabels(ax.get_yticks(), fontsize=10)
 
     # Menampilkan grafik dengan Streamlit
@@ -165,8 +165,8 @@ elif option == 'Lightest Products':
         palette=colors, ax=ax
     )
     
-    ax.set_ylabel("Product Categories")
-    ax.set_xlabel("Mass (g)")
+    ax.set_ylabel("Product Categories", fontsize=15)
+    ax.set_xlabel("Mass (g)", fontsize=15)
     ax.invert_xaxis()  # Membalik sumbu X
     ax.set_title("5 Lightest Products", loc="center", fontsize=18)
     ax.yaxis.set_label_position("right")
