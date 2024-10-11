@@ -17,4 +17,5 @@ Proyek ini bertujuan untuk menganalisis data pada E-Commerce Public Dataset dan 
 4. buat streamlit terusan dari github
 5. perbaiki github jika masih error (termasuk upload data yang dipakai)
 6. buka streamlit
-
+## Link Streamlit:
+https://fmnlsmkd2vixvhyugqn9jf.streamlit.app/#number-of-orders-per-month-2017 
