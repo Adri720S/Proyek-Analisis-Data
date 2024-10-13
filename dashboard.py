@@ -137,7 +137,7 @@ colors = sns.color_palette(["#068DA9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3
 
 # Visualisasi sesuai dengan pilihan yang dipilih pengguna
 if option == 'Heaviest Products Category':
-    st.write("### Products category with the heaviest weight")
+    st.write("### Products Category with the Heaviest Weight")
     
     # Plot kategori produk dengan berat terbesar
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -148,15 +148,15 @@ if option == 'Heaviest Products Category':
         palette=colors, ax=ax
     )
     
-    ax.set_ylabel("Product Categories")
+    ax.set_ylabel("Product Category")
     ax.set_xlabel("Mass (g)")
-    ax.set_title("5 Heaviest Products", loc="center", fontsize=18)
+    ax.set_title("5 Heaviest Products Category", loc="center", fontsize=18)
     ax.tick_params(axis='y', labelsize=12)
     
     st.pyplot(fig)
 
 elif option == 'Lightest Products Category':
-    st.write("### Products category with the lightest weight")
+    st.write("### Products Category with the Lightest Weight")
     
     # Plot produk dengan berat terkecil
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -167,10 +167,10 @@ elif option == 'Lightest Products Category':
         palette=colors, ax=ax
     )
     
-    ax.set_ylabel("Product Categories", fontsize=15)
+    ax.set_ylabel("Product Category", fontsize=15)
     ax.set_xlabel("Mass (g)", fontsize=15)
     ax.invert_xaxis()  # Membalik sumbu X
-    ax.set_title("5 Lightest Products", loc="center", fontsize=18)
+    ax.set_title("5 Lightest Products Category", loc="center", fontsize=18)
     ax.yaxis.set_label_position("right")
     ax.yaxis.tick_right()
     ax.tick_params(axis='y', labelsize=12)
