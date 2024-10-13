@@ -128,18 +128,18 @@ df_dipilih_unique = df_dipilih.drop_duplicates(subset='product_category_name_eng
 
 # Membuat opsi filter interaktif dengan selectbox pada Streamlit
 option = st.selectbox(
-    'Choose product visualization:',
-    ('Heaviest Products', 'Lightest Products')
+    'Choose product category visualization:',
+    ('Heaviest Products Category', 'Lightest Products Category')
 )
 
 # Menentukan palet warna untuk barplot
 colors = sns.color_palette(["#068DA9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"])
 
 # Visualisasi sesuai dengan pilihan yang dipilih pengguna
-if option == 'Heaviest Products':
-    st.write("### Products with the heaviest weight")
+if option == 'Heaviest Products Category':
+    st.write("### Products category with the heaviest weight")
     
-    # Plot produk dengan berat terbesar
+    # Plot kategori produk dengan berat terbesar
     fig, ax = plt.subplots(figsize=(12, 6))
     sns.barplot(
         x="product_weight_g", 
@@ -155,8 +155,8 @@ if option == 'Heaviest Products':
     
     st.pyplot(fig)
 
-elif option == 'Lightest Products':
-    st.write("### Products with the lightest weight")
+elif option == 'Lightest Products Category':
+    st.write("### Products category with the lightest weight")
     
     # Plot produk dengan berat terkecil
     fig, ax = plt.subplots(figsize=(12, 6))
